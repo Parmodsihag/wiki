@@ -1,0 +1,20 @@
+
+{% extends 'basic.html' %}
+{% block title %} AOW3 Wiki {% endblock %}
+{% block body %}
+<!-- Main Content Section -->
+<main>
+    <h2>Featured Content</h2>
+    <div class="grid">
+        <!-- Grid Items (Add more as needed) -->
+        {% for i in unit %}
+        <a href="{% url i.unit_name %}"  > <div class="grid-item">
+            <img src='/media/{{i.image}}', alt={{i.unit_name}}>
+            <p>{{i.unit_name}}</p>
+        </div> </a> 
+        {% endfor %}
+
+    </div>
+</main>
+
+{% endblock %}

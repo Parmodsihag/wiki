@@ -1,0 +1,276 @@
+{% extends 'basic.html' %}
+{% block title %} {{unit.unit_name}} {% endblock %}
+
+{% block style %}
+
+
+<style>
+    .primary-weapon-section {
+        background-color: #444; /* Darker card background */
+        border: 1px solid #555; /* Border color */
+        padding: 20px;
+        text-align: center;
+        margin: 20px;
+        max-width: 400px; /* Adjust based on your design */
+        margin: auto; /* Center the section */
+    }
+
+    .primary-weapon-section table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    .primary-weapon-section th, .primary-weapon-section td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .primary-weapon-section th {
+        background-color: #555; /* Header background color */
+        color: #fff; /* Header text color */
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #333; /* Dark background */
+        color: #fff; /* Light text */
+    }
+
+    .unit-card {
+        background-color: #444; /* Darker card background */
+        border: 1px solid #555; /* Border color */
+        padding: 20px;
+        text-align: center;
+        margin: 20px;
+        max-width: 400px; /* Adjust based on your design */
+        margin: auto; /* Center the card */
+    }
+
+    .unit-card img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .unit-card h3 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+
+    .unit-card p {
+        margin-bottom: 10px;
+    }
+
+    .unit-card table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    .unit-card th, .unit-card td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .unit-card th {
+        background-color: #555; /* Header background color */
+        color: #fff; /* Header text color */
+    }
+
+    .unit-card ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .unit-card li {
+        margin-bottom: 5px;
+    }
+
+    footer {
+        background-color: #1a1a1a;
+        color: #fff;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+        /* Responsive styles for smaller screens */
+        .unit-card {
+            max-width: 100%;
+        }
+    }
+    h2 {
+        color: #3498db; /* Upgrade name color */
+    }
+
+    h3 {
+        color: #2ecc71; /* Level heading color */
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+    .upgrade-info {
+        background-color: #444;
+        border: 1px solid #555;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .level-info {
+        margin-top: 10px;
+    }
+    .custom-list {
+    list-style: disc; /* Use disc bullets */
+    padding-left: 20px; /* Adjust as needed for the indentation */
+    }
+
+    .level-info {
+        margin-top: 10px;
+    }
+
+</style>
+
+{% endblock %}
+
+{% block body %} 
+
+<div class="unit-card">
+    <img src="{{ unit.image.url }}" alt="{{ unit.unit_name }}">
+    <h3>{{ unit.unit_name }}</h3>
+    <p><strong>Faction:</strong> {{ unit.unit_faction }}</p>
+    <p><strong>Category:</strong> {{ unit.category }}</p>
+    <p><strong>Type:</strong> {{ unit.unit_type }}</p>
+    <p><strong>Trained In:</strong> {{ unit.unit_trained_in }}</p>
+    <p><strong>Description:</strong> {{ unit.unit_discription }}</p>
+    <p><strong>Description 2:</strong> {{ unit.unit_discription2 }}</p>
+    <p><strong>Available from Rank:</strong> {{ unit.available_from_rank }}</p>
+    <p><strong>Stats:</strong></p>
+    <table>
+        <tr>
+            <th>HP</th>
+            <th>Armor</th>
+            <th>Speed</th>
+            <th>View</th>
+            <th>Cost</th>
+            <th>Time</th>
+            <th>CP</th>
+        </tr>
+        <tr>
+            <td>{{ unit.stat_hp }}</td>
+            <td>{{ unit.stat_armor }} ({{ unit.stat_armor_type }})</td>
+            <td>{{ unit.stat_speed }}</td>
+            <td>{{ unit.stat_view }}</td>
+            <td>{{ unit.stat_cost }}</td>
+            <td>{{ unit.stat_time }}</td>
+            <td>{{ unit.stat_cp }}</td>
+        </tr>
+    </table>
+
+    <div class="primary-weapon-section">
+    <p><strong>Primary weapon: {{ primary_weapon.name }}</strong></p>
+    <p><strong>Can Attack:</strong> {{ primary_weapon.can_attack }}</p>
+    <div class="weapon-tables">
+        <table>
+            <tr>
+                <th>Damage Armor 1</th>
+                <th>Damage Armor 2</th>
+                <th>Damage Armor 3</th>
+                <th>Firing Range</th>
+            </tr>
+            <tr>
+                <td>{{ primary_weapon.damage1 }}</td>
+                <td>{{ primary_weapon.damage2 }}</td>
+                <td>{{ primary_weapon.damage3 }}</td>
+                <td>{{ primary_weapon.firing_range }}</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>Accuracy Moving</th>
+                <th>Accuracy Stationary</th>
+                <th>Explosive Radius</th>
+            </tr>
+            <tr>
+                <td>{{ primary_weapon.accuracy_moving }}</td>
+                <td>{{ primary_weapon.accuracy_stationary }}</td>
+                <td>{{ primary_weapon.explosive_radius }}</td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+    <div class="primary-weapon-section">
+    <p><strong>Secondary weapon: {{ secondary_weapon.name }}</strong></p>
+    <p><strong>Can Attack:</strong> {{ secondary_weapon.can_attack }}</p>
+    <div class="weapon-tables">
+        <table>
+            <tr>
+                <th>Damage Armor 1</th>
+                <th>Damage Armor 2</th>
+                <th>Damage Armor 3</th>
+                <th>Firing Range</th>
+            </tr>
+            <tr>
+                <td>{{ secondary_weapon.damage1 }}</td>
+                <td>{{ secondary_weapon.damage2 }}</td>
+                <td>{{ secondary_weapon.damage3 }}</td>
+                <td>{{ secondary_weapon.firing_range }}</td>
+            </tr>
+        </table>
+        <table>
+            <tr>
+                <th>Accuracy Moving</th>
+                <th>Accuracy Stationary</th>
+                <th>Explosive Radius</th>
+            </tr>
+            <tr>
+                <td>{{ secondary_weapon.accuracy_moving }}</td>
+                <td>{{ secondary_weapon.accuracy_stationary }}</td>
+                <td>{{ secondary_weapon.explosive_radius }}</td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+
+    <h2>Upgrades:</h2>
+    {% for upgrade_info in upgrades %}
+        <div class="upgrade-info">
+            <h3>
+                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#upgrade{{ forloop.counter }}">
+                    <h3>{{ upgrade_info.0.name }}</h3>
+                </button>
+            </h3>
+            
+            <div id="upgrade{{ forloop.counter }}" class="collapse">
+                {% if upgrade_info.1 %}
+                    {% for level_info in upgrade_info.1 %}
+                    <div class="level-info">
+                        <h4>Level {{ level_info.0 }}:</h4>
+                        <ul class="custom-list">
+                            <li><strong>Benefit:</strong> {{ level_info.1 }}</li>
+                            <li><strong>Requirement:</strong> {{ level_info.2 }}</li>
+                            <li><strong>Cost:</strong> {{ level_info.3 }}</li>
+                            <li><strong>Time:</strong> {{ level_info.4 }}</li>
+                        </ul>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>No levels available for this upgrade.</p>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
