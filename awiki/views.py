@@ -10,12 +10,14 @@ def index(request):
     print(params)
     return render(request, 'index.html', params)
 
-def unit0(request):
-    # units = Unit.objects.all()
-    # params = {'unit' : units[0]}
-    unit = Unit.objects.get(id=1)
+
+def getunit_details(unit_id):
+    unit = Unit.objects.get(id=unit_id)
     primary_weapon = Weapon.objects.get(name=unit.primary_weapon)
-    secondary_weapon = Weapon.objects.get(name=unit.secondary_weapon)
+    if unit.secondary_weapon:
+        secondary_weapon = Weapon.objects.get(name=unit.secondary_weapon)
+    else:
+        secondary_weapon = None
     all_list = []
     for i in unit.upgrades.all():
         upgrade = UnitUpgrade1.objects.get(name=i)
@@ -28,18 +30,14 @@ def unit0(request):
     
     params = {'unit' : unit, 'primary_weapon': primary_weapon, 'secondary_weapon':secondary_weapon, 'upgrades': all_list}
 
-    # print(unit.primary_weapon)
-    return render(request, 'about.html', params)
+    return params
 
 def unit1(request):
-    units = Unit.objects.all()
-    params = {'unit' : units[1]}
-    return render(request, 'about.html', params)
+    return render(request, 'about.html', getunit_details(1))
 
 def unit2(request):
-    units = Unit.objects.all()
-    params = {'unit' : units[2]}
-    return render(request, 'about.html', params)
+    return render(request, 'about.html', getunit_details(2))
+
 
 def unit3(request):
     units = Unit.objects.all()

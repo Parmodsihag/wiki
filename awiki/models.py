@@ -24,7 +24,7 @@ class Weapon(models.Model):
 class UpgradeLevel1(models.Model):
     upgrade_name = models.CharField(max_length=100, default="?")
     level = models.IntegerField()
-    benefit = models.CharField(max_length=100, default='?')
+    benefit = models.CharField(max_length=300, default='?')
     requirement = models.CharField(max_length=100, default='?')
     cost = models.IntegerField(default=1)
     time = models.CharField(max_length=100, default='?')

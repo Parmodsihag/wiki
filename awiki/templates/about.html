@@ -44,7 +44,7 @@
         padding: 20px;
         text-align: center;
         margin: 20px;
-        max-width: 400px; /* Adjust based on your design */
+        max-width: 500px; /* Adjust based on your design */
         margin: auto; /* Center the card */
     }
 
@@ -109,6 +109,9 @@
     }
 
     h3 {
+        color: #2ecc71; /* Level heading color */
+    }
+    h5 {
         color: #2ecc71; /* Level heading color */
     }
 
@@ -210,46 +213,47 @@
     </div>
     </div>
 
-    <div class="primary-weapon-section">
-    <p><strong>Secondary weapon: {{ secondary_weapon.name }}</strong></p>
-    <p><strong>Can Attack:</strong> {{ secondary_weapon.can_attack }}</p>
-    <div class="weapon-tables">
-        <table>
-            <tr>
-                <th>Damage Armor 1</th>
-                <th>Damage Armor 2</th>
-                <th>Damage Armor 3</th>
-                <th>Firing Range</th>
-            </tr>
-            <tr>
-                <td>{{ secondary_weapon.damage1 }}</td>
-                <td>{{ secondary_weapon.damage2 }}</td>
-                <td>{{ secondary_weapon.damage3 }}</td>
-                <td>{{ secondary_weapon.firing_range }}</td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <th>Accuracy Moving</th>
-                <th>Accuracy Stationary</th>
-                <th>Explosive Radius</th>
-            </tr>
-            <tr>
-                <td>{{ secondary_weapon.accuracy_moving }}</td>
-                <td>{{ secondary_weapon.accuracy_stationary }}</td>
-                <td>{{ secondary_weapon.explosive_radius }}</td>
-            </tr>
-        </table>
-    </div>
-    </div>
-
-
+    {% if secondary_weapon != None %}
+        <div class="primary-weapon-section">
+        <p><strong>Secondary weapon: {{ secondary_weapon.name }}</strong></p>
+        <p><strong>Can Attack:</strong> {{ secondary_weapon.can_attack }}</p>
+        <div class="weapon-tables">
+            <table>
+                <tr>
+                    <th>Damage Armor 1</th>
+                    <th>Damage Armor 2</th>
+                    <th>Damage Armor 3</th>
+                    <th>Firing Range</th>
+                </tr>
+                <tr>
+                    <td>{{ secondary_weapon.damage1 }}</td>
+                    <td>{{ secondary_weapon.damage2 }}</td>
+                    <td>{{ secondary_weapon.damage3 }}</td>
+                    <td>{{ secondary_weapon.firing_range }}</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <th>Accuracy Moving</th>
+                    <th>Accuracy Stationary</th>
+                    <th>Explosive Radius</th>
+                </tr>
+                <tr>
+                    <td>{{ secondary_weapon.accuracy_moving }}</td>
+                    <td>{{ secondary_weapon.accuracy_stationary }}</td>
+                    <td>{{ secondary_weapon.explosive_radius }}</td>
+                </tr>
+            </table>
+        </div>
+        </div>
+    {% endif %}
+    
     <h2>Upgrades:</h2>
     {% for upgrade_info in upgrades %}
         <div class="upgrade-info">
             <h3>
                 <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#upgrade{{ forloop.counter }}">
-                    <h3>{{ upgrade_info.0.name }}</h3>
+                    <h5>{{ upgrade_info.0.name }}</h5>
                 </button>
             </h3>
             
